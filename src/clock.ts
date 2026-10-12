@@ -77,10 +77,10 @@ export const FIB_COMBINATIONS: readonly Mask[][] = [
 export type CellState = 0 | 1 | 3 | 4
 
 export const CELL_COLOR: Record<CellState, string> = {
-  0: "rgb(255, 255, 255)",
-  1: "rgb(255, 0, 0)",
-  3: "rgb(0, 255, 0)",
-  4: "rgb(0, 0, 255)",
+  0: "#f3eee4",
+  1: "#e3867c",
+  3: "#93c9a4",
+  4: "#7097c8",
 }
 
 export const CELL_LABEL: Record<CellState, string> = {

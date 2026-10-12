@@ -113,7 +113,7 @@ function App() {
               <div
                 key={index}
                 className={`square ${className}`}
-                style={{ background: CELL_COLOR[cell], color: cell === 1 || cell === 4 ? "#fff" : "#111" }}
+                style={{ background: CELL_COLOR[cell], color: cell === 4 ? "#fbfaf7" : "#2a2733" }}
                 title={`${value}, ${CELL_LABEL[cell].toLowerCase()}`}
                 aria-hidden="true"
               >
