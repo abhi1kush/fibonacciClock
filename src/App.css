@@ -1,0 +1,231 @@
+.layout {
+  display: grid;
+  grid-template-areas:
+    "title"
+    "readout"
+    "clock"
+    "legend";
+  gap: 16px;
+  width: min(1080px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 28px 0 48px;
+}
+
+.title-block {
+  grid-area: title;
+}
+
+.eyebrow {
+  margin: 0 0 6px;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 650;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+h1,
+h2 {
+  font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+  font-weight: 600;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(2.1rem, 5vw, 3.4rem);
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+}
+
+.sidebar {
+  display: contents;
+}
+
+.clock-wrap {
+  grid-area: clock;
+  width: 100%;
+}
+
+.clock {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  aspect-ratio: 8 / 5;
+  width: 100%;
+  background: #000;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
+  container-type: size;
+}
+
+.square {
+  display: grid;
+  place-items: center;
+  box-shadow: inset 0 0 0 1px #000;
+  color: #111;
+  font-size: 7cqi;
+  font-weight: 750;
+  line-height: 1;
+  user-select: none;
+}
+
+.square-1 {
+  font-size: 4.2cqi;
+}
+
+.square-2 {
+  grid-column: 1 / span 2;
+  grid-row: 1 / span 2;
+}
+
+.square-1-top {
+  grid-column: 3;
+  grid-row: 1;
+}
+
+.square-1-bottom {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+.square-5 {
+  grid-column: 4 / span 5;
+  grid-row: 1 / span 5;
+  font-size: 14cqi;
+}
+
+.square-3 {
+  grid-column: 1 / span 3;
+  grid-row: 3 / span 3;
+  font-size: 10cqi;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 18px 18px 16px;
+}
+
+.readout {
+  grid-area: readout;
+}
+
+.digital {
+  margin: 0;
+  font-size: clamp(2.3rem, 7vw, 3.5rem);
+  font-variant-numeric: tabular-nums;
+  font-weight: 650;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.date,
+.face-line,
+.help,
+.equation {
+  margin: 0;
+}
+
+.date {
+  margin-top: 8px;
+  color: var(--muted);
+}
+
+.face-line {
+  margin-top: 14px;
+  font-size: 1.05rem;
+}
+
+.equations {
+  display: grid;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.equation {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-variant-numeric: tabular-nums;
+}
+
+.equation span {
+  color: var(--muted);
+}
+
+.legend-card {
+  grid-area: legend;
+}
+
+h2 {
+  margin: 0 0 12px;
+  font-size: 1.35rem;
+}
+
+.legend {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.legend li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.swatch {
+  width: 22px;
+  height: 22px;
+  flex: none;
+  border: 2px solid #000;
+}
+
+.help {
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.source {
+  margin: 12px 0 0;
+  font-size: 0.92rem;
+}
+
+.source a {
+  color: #fff;
+}
+
+@media (min-width: 880px) {
+  .layout {
+    grid-template-columns: minmax(0, 1.45fr) minmax(280px, 0.85fr);
+    grid-template-areas:
+      "title title"
+      "clock side";
+    align-items: center;
+    column-gap: 32px;
+    row-gap: 18px;
+    padding-top: 40px;
+  }
+
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
+    grid-area: side;
+  }
+}
+
+@media (max-width: 380px) {
+  .layout {
+    width: min(1080px, calc(100% - 20px));
+  }
+
+  .equation {
+    flex-direction: column;
+    gap: 2px;
+  }
+}
