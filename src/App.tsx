@@ -4,19 +4,20 @@ import {
   CELL_COLOR,
   CELL_LABEL,
   type CellState,
-  fiveMinuteBucket,
+  type ClockReading,
+  faceFromDate,
   formatFace,
   hourEquation,
   minuteEquation,
-  readingFromDate,
   squareParts,
   SQUARE_VALUES,
+  type TimedFace,
 } from "./clock.ts"
 
 interface Snapshot {
-  bucket: string
+  minute: string
   now: Date
-  reading: ReturnType<typeof readingFromDate>
+  reading: ClockReading
 }
 
 const PLACEMENTS = [
@@ -29,27 +30,26 @@ const PLACEMENTS = [
 
 const LEGEND: CellState[] = [0, 1, 3, 4]
 
-function makeSnapshot(date: Date): Snapshot {
-  return {
-    bucket: fiveMinuteBucket(date),
-    now: date,
-    reading: readingFromDate(date),
-  }
-}
-
 function useFibonacciClock(): Snapshot {
-  const [snapshot, setSnapshot] = useState<Snapshot>(() => makeSnapshot(new Date()))
-  const bucketRef = useRef(snapshot.bucket)
+  const [snapshot, setSnapshot] = useState<Snapshot>(() => {
+    const now = new Date()
+    const face = faceFromDate(now)
+    return { minute: face.minute, now, reading: face.reading }
+  })
+  const faceRef = useRef<TimedFace>({
+    minute: snapshot.minute,
+    reading: snapshot.reading,
+  })
 
   useEffect(() => {
     let timer = 0
 
     const update = () => {
       const date = new Date()
-      const nextBucket = fiveMinuteBucket(date)
-      if (nextBucket !== bucketRef.current) {
-        bucketRef.current = nextBucket
-        setSnapshot(makeSnapshot(date))
+      const next = faceFromDate(date, faceRef.current)
+      if (next !== faceRef.current) {
+        faceRef.current = next
+        setSnapshot({ minute: next.minute, now: date, reading: next.reading })
         return
       }
       setSnapshot((prev) => ({ ...prev, now: date }))
@@ -163,8 +163,9 @@ function App() {
             The squares are worth 1, 1, 2, 3, and 5. Add the red and blue squares
             for the hour on a 12-hour clock. Add the green and blue squares and
             multiply by 5 for the minutes. The face steps every five minutes and
-            does not show AM or PM. When more than one coloring adds up to the
-            hour or the minutes, one of those colorings is chosen at random.
+            does not show AM or PM. A coloring is chosen at random and chosen
+            again at each minute. When more than one coloring adds up to that
+            time, the next choice is a different one.
           </p>
           <p className="source">
             <a href="https://github.com/abhi1kush/fibonacciClock/blob/master/python/fibonacci.py">
