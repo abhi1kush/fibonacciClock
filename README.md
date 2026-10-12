@@ -2,7 +2,7 @@
 
 Five squares, worth 1, 1, 2, 3, and 5, show the time. Red counts toward the hour, green counts toward the minutes, blue counts toward both, and white is off. Hours use a 12-hour face. Minutes move in five-minute steps. The coloring is chosen at random and chosen again at each minute. When more than one coloring adds up to that time, the next choice is a different one.
 
-**Live:** https://abhi1kush.github.io/fibonacciClock/
+**Live:** https://abhi1kush.github.io/fibonacci-clock/
 
 ## React app
 
@@ -20,7 +20,7 @@ npm run preview
 
 `npm test` checks the square combinations, the 12-hour five-minute rules, and the minute face refresh.
 
-Vite is configured with `base: '/fibonacciClock/'`. Pushes to `master` build the app and deploy `dist` to GitHub Pages through [`.github/workflows/pages.yml`](.github/workflows/pages.yml).
+Vite is configured with `base: '/fibonacci-clock/'`. Pushes to `master` build the app and deploy `dist` to GitHub Pages through [`.github/workflows/pages.yml`](.github/workflows/pages.yml).
 
 ## Original Python
 

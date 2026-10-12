@@ -168,7 +168,7 @@ function App() {
             time, the next choice is a different one.
           </p>
           <p className="source">
-            <a href="https://github.com/abhi1kush/fibonacciClock/blob/master/python/fibonacci.py">
+            <a href="https://github.com/abhi1kush/fibonacci-clock/blob/master/python/fibonacci.py">
               Original Python clock
             </a>
           </p>
